@@ -326,4 +326,4 @@ async def мут(ctx, member: discord.Member):
     reason = info[4:]
     reason = ' '.join(reason)
 token = os.environ.get('BOT_TOKEN')
-#bot.run(TOKEN)
+bot.run(token)
