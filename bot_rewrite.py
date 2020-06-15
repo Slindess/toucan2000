@@ -9,11 +9,14 @@ from discord import channel
 import datetime
 import asyncio
 import os
-
+import json
+import requests
 
 bot = commands.Bot(command_prefix='/')
 bot.remove_command('help')
-
+global role_price
+#role_price[{'id': '714223774584799283', 'price': 1000, 'name': 'Business Woman'}]
+role_price={'714223774584799283' : 1000}
 @bot.command(pass_context=True)
 async def гугл(ctx):
     try:
@@ -33,10 +36,10 @@ async def гугл(ctx):
 #####################################################################
 @bot.command(pass_context=True)
 async def help(ctx):
-    emb= discord.Embed(title='Доступные команды:',description="Возможно получить полную справку о команде , написав знак Q, например: /helpQ",colour = 0xe67e22)#0x12FF11)
+    emb= discord.Embed(title='Доступные команды:',description="Возможно получить полную справку о команде , написав знак Q, например: !helpQ",colour = 0xe67e22)#0x12FF11)
     emb.set_thumbnail( url= "https://cdn.discordapp.com/attachments/715633213212721192/718150133329428540/image0.jpg")
-    emb.add_field(name='Полезные команды'.format(), value='!время - сколько сейчас время\n'+
-                  '!дата - какая сегодня дата',
+    emb.add_field(name='Полезные команды'.format(), value='/время - сколько сейчас время\n'+
+                  '/дата - какая сегодня дата',
      inline=False)
     emb.add_field(name ='Развлекательные', value="/гугл @Имя что гуглим",
         inline=False)          
@@ -325,5 +328,53 @@ async def мут(ctx, member: discord.Member):
         await this_member.remove_roles(mute_role)
     reason = info[4:]
     reason = ' '.join(reason)
+@bot.command()
+async def баланс(ctx):
+    name= ctx.message.author
+    users = (requests.get('http://188.225.47.187/api/jsonstorage/?id=a17b2204755a43ecad8af7a233326105')).json()
+    user_index = -1 
+    for i in range (len(users)):
+        if users[i]['username'] == str(name):
+            user_index=i
+            break
+    if user_index == -1:
+        users.append({"username": str(name),"money":0,"factor":1})
+        data = json.dumps(users)
+        requests.put('http://188.225.47.187/api/jsonstorage/?id=a17b2204755a43ecad8af7a233326105', data=data)
+    user = users[user_index]
+    await ctx.send(f"Ваш баланс: {user['money']}")
 token = os.environ.get('BOT_TOKEN')
-bot.run(token)
+
+@bot.command()
+async def купить(ctx):
+    global role_price
+    this_guild = ctx.message.author.guild
+    info = ctx.message.content
+    avtor= ctx.message.author.id
+    this_member = get(this_guild.members, id=int(avtor))
+    info = info.split(' ')
+    role_ment = info[1]
+    role_id= role_ment[3:]
+    role_id = role_id[:-1]
+    this_role = get(this_guild.roles, id=int(role_id))
+    users = (requests.get('http://188.225.47.187/api/jsonstorage/?id=a17b2204755a43ecad8af7a233326105')).json()
+    user_index = -1
+    name= ctx.message.author
+    for i in range (len(users)):
+        if users[i]['username'] == str(name):
+            user_index=i
+            break
+    if user_index == -1:
+        users.append({"username": str(name),"money":0,"factor":1})
+        data = json.dumps(users)
+        requests.put('http://188.225.47.187/api/jsonstorage/?id=a17b2204755a43ecad8af7a233326105', data=data)
+    user = users[user_index]
+    if user['money'] >= role_price[role_id]:
+        user['money'] -= role_price[role_id]
+        await this_member.add_roles(this_role)
+        data = json.dumps(users)
+        requests.put('http://188.225.47.187/api/jsonstorage/?id=a17b2204755a43ecad8af7a233326105', data=data)
+        await ctx.send('Вы успешно приобрели роль')
+    else:
+        await ctx.send(":x::x::x:Вы не достойны такой роскоши, так как у Вас недостаточно средств:x::x::x:")
+bot.run(TOKEN)
