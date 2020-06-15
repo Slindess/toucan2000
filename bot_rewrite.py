@@ -11,7 +11,7 @@ import asyncio
 import os
 
 
-bot = commands.Bot(command_prefix='!')
+bot = commands.Bot(command_prefix='/')
 bot.remove_command('help')
 
 @bot.command(pass_context=True)
@@ -33,12 +33,12 @@ async def гугл(ctx):
 #####################################################################
 @bot.command(pass_context=True)
 async def help(ctx):
-    emb= discord.Embed(title='Доступные команды:',description="Возможно получить полную справку о команде , написав знак Q, например: !helpQ",colour = 0xe67e22)#0x12FF11)
+    emb= discord.Embed(title='Доступные команды:',description="Возможно получить полную справку о команде , написав знак Q, например: /helpQ",colour = 0xe67e22)#0x12FF11)
     emb.set_thumbnail( url= "https://cdn.discordapp.com/attachments/715633213212721192/718150133329428540/image0.jpg")
     emb.add_field(name='Полезные команды'.format(), value='!время - сколько сейчас время\n'+
                   '!дата - какая сегодня дата',
      inline=False)
-    emb.add_field(name ='Развлекательные', value="!гугл @Имя что гуглим",
+    emb.add_field(name ='Развлекательные', value="/гугл @Имя что гуглим",
         inline=False)          
     
     await ctx.send(embed=emb)
