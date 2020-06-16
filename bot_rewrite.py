@@ -285,7 +285,7 @@ async def мут(ctx, member: discord.Member):
     info= info.split(' ')
     prison=info[1]
     mention=info[1]
-    prison=prison[3:]
+    prison=prison[2:]
     prison_id=prison[:-1]
     print(prison_id)
     time=info[2]
