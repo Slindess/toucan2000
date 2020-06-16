@@ -44,7 +44,8 @@ async def help(ctx):
                   '/дата - какая сегодня дата',
      inline=False)
     emb.add_field(name ='Развлекательные', value="/гугл @Имя что_гуглим\n/переводчик язык язык фраза",
-        inline=False)          
+        inline=False)
+    emb.add_field(name = 'Серверные', value="/баланс - Ваш баланс")
     
     await ctx.send(embed=emb)
 ################################################################
