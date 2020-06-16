@@ -43,7 +43,7 @@ async def help(ctx):
     emb.add_field(name='Полезные команды'.format(), value='/время - сколько сейчас время\n'+
                   '/дата - какая сегодня дата',
      inline=False)
-    emb.add_field(name ='Развлекательные', value="/гугл @Имя что гуглим",
+    emb.add_field(name ='Развлекательные', value="/гугл @Имя что_гуглим\n/переводчик язык язык фраза",
         inline=False)          
     
     await ctx.send(embed=emb)
@@ -53,7 +53,7 @@ async def время(ctx):
     f=str(datetime.datetime.now())
     v=f[:-10]
     b=v[-5:]
-    emb= discord.Embed(title='Текущее время:',description=b, colour=0x12eb19)#салатовый
+    emb= discord.Embed(title='Европейское время:',description=b, colour=0x12eb19)#салатовый
     await ctx.send(embed=emb)
 ###################################################################
 @bot.command(pass_context=True)
