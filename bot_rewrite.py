@@ -377,4 +377,4 @@ async def купить(ctx):
         await ctx.send('Вы успешно приобрели роль')
     else:
         await ctx.send(":x::x::x:Вы не достойны такой роскоши, так как у Вас недостаточно средств:x::x::x:")
-bot.run(TOKEN)
+bot.run(token)
