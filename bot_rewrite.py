@@ -380,6 +380,32 @@ async def купить(ctx):
         await ctx.send('Вы успешно приобрели роль')
     else:
         await ctx.send(":x::x::x:Вы не достойны такой роскоши, так как у Вас недостаточно средств:x::x::x:")
+@bot.command()
+@commands.has_role('Владелец Жигули')
+async def небухти(ctx):
+        info = ctx.message.content
+        msg = info.split(' ')
+        emb= discord.Embed(title = 'Не бухти', description =msg[1]+', разве ты старый автомобиль, чтоб так бухтеть?\n'+ctx.message.author.mention +' просит тебя не бухтеть!')
+        emb.set_image(url = 'https://cdn.discordapp.com/attachments/713748958916247592/724645466024706108/buhta.gif')
+        await ctx.send(embed = emb)
+@bot.command()
+@commands.has_role('Владелец Жигули')
+async def незаводись(ctx):
+        info = ctx.message.content
+        msg = info.split(' ')
+        emb= discord.Embed(title = 'Не заводись', description =msg[1]+', что-то ты не похож на Audi, чтоб заводиться\n'+
+                           ctx.message.author.mention +' просит тебя не начинать злиться')
+        emb.set_image(url = 'https://cdn.discordapp.com/attachments/701789648841736283/724654650963394630/fari.gif')
+        await ctx.send(embed = emb)
+@bot.command()
+@commands.has_role('Владелец Жигули')
+async def сплошняк(ctx):
+        info = ctx.message.content
+        msg = info.split(' ')
+        emb= discord.Embed(title = 'Ты сплошняк не пересекай', description =msg[1]+', не пересекай сплошную линию\n'+
+                           ctx.message.author.mention +' просит тебя не переходить границы')
+        emb.set_image(url = 'https://cdn.discordapp.com/attachments/701789648841736283/724657032933671052/splosh.gif')
+        await ctx.send(embed = emb)
 
                   
 bot.run(token)
