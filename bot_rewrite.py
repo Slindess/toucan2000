@@ -38,7 +38,7 @@ async def гугл(ctx):
 #####################################################################
 @bot.command(pass_context=True)
 async def help(ctx):
-    emb= discord.Embed(title='Доступные команды:',description="Возможно получить полную справку о команде , написав знак Q, например: !helpQ",colour = 0xe67e22)#0x12FF11)
+    emb= discord.Embed(title='Доступные команды:',description="Возможно получить полную справку о команде , написав знак Q, например: !переводчикQ",colour = 0xe67e22)#0x12FF11)
     emb.set_thumbnail( url= "https://cdn.discordapp.com/attachments/715633213212721192/718150133329428540/image0.jpg")
     emb.add_field(name='Полезные команды'.format(), value='/время - сколько сейчас время\n'+
                   '/дата - какая сегодня дата',
@@ -46,7 +46,7 @@ async def help(ctx):
     emb.add_field(name ='Развлекательные', value="/гугл @Имя что_гуглим\n/переводчик язык язык фраза",
         inline=False)
     emb.add_field(name = 'Серверные', value="/баланс - Ваш баланс")
-    
+    emb.add_field(name='Для Владельца Жигули', value = "/небухти @Имя\n/незаводись @Имя\n/сплошняк @Имя - не переходи границы"
     await ctx.send(embed=emb)
 ################################################################
 @bot.command(pass_context=True)
@@ -54,7 +54,7 @@ async def время(ctx):
     f=str(datetime.datetime.now())
     v=f[:-10]
     b=v[-5:]
-    emb= discord.Embed(title='Европейское время:',description=b, colour=0x12eb19)#салатовый
+    emb= discord.Embed(title='Время по гринвичу:',description=b, colour=0x12eb19)#салатовый
     await ctx.send(embed=emb)
 ###################################################################
 @bot.command(pass_context=True)
