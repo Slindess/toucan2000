@@ -406,6 +406,53 @@ async def сплошняк(ctx):
                            ctx.message.author.mention +' просит тебя не переходить границы')
         emb.set_image(url = 'https://cdn.discordapp.com/attachments/701789648841736283/724657032933671052/splosh.gif')
         await ctx.send(embed = emb)
-
+@bot.command()
+async def ставка(ctx):
+    this_guild = ctx.message.author.guild
+    
+    this_channel = discord.utils.get(this_guild.channels, id = 724722525371629598)
+    if ctx.channel !=this_channel:
+        await ctx.send('Эту команду можно использовать только в канале казино')
+        return
+    info = ctx.message.content
+    msg = info.split(' ')
+    stavka = msg[1]
+    stavka = int(stavka)
+    if stavka < 10:
+        await ctx.send(':x:Нельзя делать ставку меньше 10:x:')
+        return
+    kof = random.randint(0,100)
+    kof = kof/50
+    kof = round(kof,1)
+    prize = kof*stavka
+    prize = int(prize)
+    users = (requests.get('https://api.npoint.io/f48dd72c49b6cc84d2f4')).json()
+    user_index = -1
+    name= ctx.message.author
+    for i in range (len(users)):
+        if users[i]['username'] == str(name):
+            user_index=i
+            break
+    if user_index == -1:
+        await ctx.send('Вы не зарегистрированы в базе данных, для регистрации пропишите /баланс')
+    user = users[user_index]
+    if user['money'] >=stavka:
+            user['money'] -= stavka
+            user['money'] += prize
+            data = json.dumps(users)
+            requests.post('https://api.npoint.io/f48dd72c49b6cc84d2f4', data=data)
+    else:
+        await ctx.send(':x:Недостаточно средств:x:')
+        return
+    if prize < stavka:
+        emb = discord.Embed(title = 'Ваш выигрыш:', description = str(prize)+'\n\n:red_circle::white_circle::red_circle:\n\nВы проиграли'+
+                            '\n\n:red_circle::white_circle::red_circle:', colour = 0xFF1F00)
+        
+        await ctx.send(embed = emb)
+    if prize >=stavka:
+        emb = discord.Embed(title = 'Ваш выигрыш:', description = str(prize)+'\n\n:green_circle::white_circle::green_circle:\n\nВы выиграли'+
+                            '\n\n:green_circle::white_circle::green_circle:', colour = 0x00FF2A)
+    
+        await ctx.send(embed = emb)
                   
 bot.run(token)
