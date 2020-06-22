@@ -334,7 +334,7 @@ async def мут(ctx, member: discord.Member):
 @bot.command()
 async def баланс(ctx):
     name= ctx.message.author
-    users = (requests.get('https://extendsclass.com/api/json-storage/bin/debeefb')).json()
+    users = (requests.get('https://api.npoint.io/f48dd72c49b6cc84d2f4')).json()
     user_index = -1 
     for i in range (len(users)):
         if users[i]['username'] == str(name):
@@ -343,7 +343,7 @@ async def баланс(ctx):
     if user_index == -1:
         users.append({"username": str(name),"money":0,"factor":1})
         data = json.dumps(users)
-        requests.put('https://extendsclass.com/api/json-storage/bin/debeefb', data=data)
+        requests.post('https://api.npoint.io/f48dd72c49b6cc84d2f4', data=data)
     user = users[user_index]
     await ctx.send(f"Ваш баланс: {user['money']}")
 token = os.environ.get('BOT_TOKEN')
@@ -360,7 +360,7 @@ async def купить(ctx):
     role_id= role_ment[3:]
     role_id = role_id[:-1]
     this_role = get(this_guild.roles, id=int(role_id))
-    users = (requests.get('https://extendsclass.com/api/json-storage/bin/debeefb')).json()
+    users = (requests.get('https://api.npoint.io/f48dd72c49b6cc84d2f4')).json()
     user_index = -1
     name= ctx.message.author
     for i in range (len(users)):
@@ -370,13 +370,13 @@ async def купить(ctx):
     if user_index == -1:
         users.append({"username": str(name),"money":0,"factor":1})
         data = json.dumps(users)
-        requests.put('https://extendsclass.com/api/json-storage/bin/debeefb', data=data)
+        requests.post('https://api.npoint.io/f48dd72c49b6cc84d2f4', data=data)
     user = users[user_index]
     if user['money'] >= role_price[role_id]:
         user['money'] -= role_price[role_id]
         await this_member.add_roles(this_role)
         data = json.dumps(users)
-        requests.put('https://extendsclass.com/api/json-storage/bin/debeefb', data=data)
+        requests.post('https://api.npoint.io/f48dd72c49b6cc84d2f4', data=data)
         await ctx.send('Вы успешно приобрели роль')
     else:
         await ctx.send(":x::x::x:Вы не достойны такой роскоши, так как у Вас недостаточно средств:x::x::x:")
