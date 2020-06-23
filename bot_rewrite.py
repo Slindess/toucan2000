@@ -109,8 +109,8 @@ async def переводчик(ctx):
         await ctx.send(embed=embed_obj)
 @bot.command(pass_context=True)
 async def переводчикQ(ctx):
-    emb= discord.Embed(title='Переводчик',description="Чтообы посмотреть описание:\n!Переводчик1\n"+
-                       'Чтобы посмотреть написание языков:\n!Переводчик2'
+    emb= discord.Embed(title='Переводчик',description="Чтообы посмотреть описание:\n/Переводчик1\n"+
+                       'Чтобы посмотреть написание языков:\n/Переводчик2'
                        ,colour = 0x1BFF00)#0x12FF11)
     await ctx.send(embed=emb)
 @bot.command(pass_context=True)
@@ -346,7 +346,11 @@ async def баланс(ctx):
         data = json.dumps(users)
         requests.post('https://api.npoint.io/f48dd72c49b6cc84d2f4', data=data)
     user = users[user_index]
-    await ctx.send(f"Ваш баланс: {user['money']}")
+    emb = discord.Embed(title = 0, description = 'Dark Gibbons', colour = 0xFEFCFD)
+    emb.add_field(name = 'Ваш баланс', value = user['money'])
+    emb.set_footer (text = ctx.author.name,icon_url= ctx.author.avatar_url)
+    await ctx.send(embed = emb)
+    #await ctx.send(f"Ваш баланс: {user['money']}")
 token = os.environ.get('BOT_TOKEN')
 
 @bot.command()
