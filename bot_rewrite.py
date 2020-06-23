@@ -392,6 +392,7 @@ async def небухти(ctx):
         msg = info.split(' ')
         emb= discord.Embed(title = 'Не бухти', description =msg[1]+', разве ты старый автомобиль, чтоб так бухтеть?\n'+ctx.message.author.mention +' просит тебя не бухтеть!')
         emb.set_image(url = 'https://cdn.discordapp.com/attachments/713748958916247592/724645466024706108/buhta.gif')
+        emb.set_footer(text = 'Команда доступна только для Владельца Жигули')
         await ctx.send(embed = emb)
 @bot.command()
 @commands.has_role('Владелец Жигули')
@@ -401,6 +402,7 @@ async def незаводись(ctx):
         emb= discord.Embed(title = 'Не заводись', description =msg[1]+', что-то ты не похож на Audi, чтоб заводиться\n'+
                            ctx.message.author.mention +' просит тебя не начинать злиться')
         emb.set_image(url = 'https://cdn.discordapp.com/attachments/701789648841736283/724654650963394630/fari.gif')
+        emb.set_footer(text = 'Команда доступна только для Владельца Жигули')
         await ctx.send(embed = emb)
 @bot.command()
 @commands.has_role('Владелец Жигули')
@@ -410,6 +412,7 @@ async def сплошняк(ctx):
         emb= discord.Embed(title = 'Ты сплошняк не пересекай', description =msg[1]+', не пересекай сплошную линию\n'+
                            ctx.message.author.mention +' просит тебя не переходить границы')
         emb.set_image(url = 'https://cdn.discordapp.com/attachments/701789648841736283/724657032933671052/splosh.gif')
+        emb.set_footer(text = 'Команда доступна только для Владельца Жигули')
         await ctx.send(embed = emb)
 @bot.command()
 async def ставка(ctx):
