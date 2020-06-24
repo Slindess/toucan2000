@@ -507,7 +507,17 @@ async def профиль(ctx):
         emb.add_field(name = 'Медаль', value= 'За C#:white_check_mark:')
     else:
         emb.add_field(name = 'Медаль', value = 'За C#:x: ')
+    if 701731005991747584 in roles:
+        emb.set_image(url = 'https://cdn.discordapp.com/attachments/713748958916247592/725328463053193226/image0.png')
+    elif 720622323673071698 in roles:
+        emb.set_image(url ='https://cdn.discordapp.com/attachments/713748958916247592/725350094659911680/image0.png')
+
+    elif 718940553106161726 in roles:
+        emb.set_image(url ='https://cdn.discordapp.com/attachments/713748958916247592/725355053443055639/image0.png')
+    else:
+         emb.set_image(url ='https://cdn.discordapp.com/attachments/713748958916247592/725358977600323675/image0.png')
     await ctx.send(embed = emb)##
+        
     
     
 bot.run(token)
