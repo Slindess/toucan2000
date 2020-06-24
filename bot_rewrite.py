@@ -510,6 +510,6 @@ async def профиль(ctx):
     else:
         emb.add_field(name = 'Медаль', value = 'За C#:x: ')
     await ctx.send(embed = emb)
-    #hwgwuygswy
+    
     
 bot.run(token)
