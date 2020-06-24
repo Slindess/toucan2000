@@ -476,35 +476,35 @@ async def профиль(ctx):
     roles = [role.id for role in ctx.author.roles]
     
     emb.add_field(name ='Медали' , value = ':medal:')
-    if '718940559963848744' in roles:
+    if 71894055996384874 in roles:
         emb.add_field(name = 'Медаль', value = 'За Верстку:white_check_mark: ')
     else:
         emb.add_field(name = 'Медаль', value = 'За Верстку:x: ')
-    if '715154393300860949' in roles:
+    if 715154393300860949 in roles:
         emb.add_field(name = 'Медаль', value ='За Python:white_check_mark:')
     else:
         emb.add_field(name = 'Медаль', value = 'За Python:x: ')
-    if '715154393623953429' in roles:
+    if 715154393623953429 in roles:
         emb.add_field(name = 'Медаль', value ='За JavaScript:white_check_mark:')
     else:
         emb.add_field(name = 'Медаль', value = 'За JavaScript:x: ')
-    if '715154393900515368' in roles:
+    if 715154393900515368 in roles:
         emb.add_field(name = 'Медаль', value ='За Swift:white_check_mark:')
     else:
         emb.add_field(name = 'Медаль', value = 'За Swift:x: ')
-    if '718944996455219235' in roles:
+    if 718944996455219235 in roles:
         emb.add_field(name = 'Медаль', value= 'За Веб Дизайн:white_check_mark:')
     else:
         emb.add_field(name = 'Медаль', value = 'За Веб Дизайн:x: ')
-    if '718945136309960735' in roles:
+    if 718945136309960735 in roles:
         emb.add_field(name = 'Медаль', value= 'За Game Dev:white_check_mark:')
     else:
         emb.add_field(name = 'Медаль', value = 'За Game Dev:x: ')
-    if '715154393229688934' in roles:
+    if 715154393229688934 in roles:
         emb.add_field(name = 'Медаль', value= 'За C++:white_check_mark:')
     else:
         emb.add_field(name = 'Медаль', value = 'За C++:x: ')
-    if '725111701326004225' in roles:
+    if 725111701326004225 in roles:
         emb.add_field(name = 'Медаль', value= 'За C#:white_check_mark:')
     else:
         emb.add_field(name = 'Медаль', value = 'За C#:x: ')
