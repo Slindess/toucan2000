@@ -509,7 +509,7 @@ async def профиль(ctx):
         emb.add_field(name = 'Медаль', value= 'За C#:white_check_mark:')
     else:
         emb.add_field(name = 'Медаль', value = 'За C#:x: ')
-    await ctx.send(embed = emb)
+    await ctx.send(embed = emb)##
     
     
 bot.run(token)
