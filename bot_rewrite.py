@@ -476,7 +476,7 @@ async def профиль(ctx):
     roles = [role.id for role in ctx.author.roles]
     
     emb.add_field(name ='Медали' , value = ':medal:')
-    if 71894055996384874 in roles:
+    if 718940559963848744 in roles:
         emb.add_field(name = 'Медаль', value = 'За Верстку:white_check_mark: ')
     else:
         emb.add_field(name = 'Медаль', value = 'За Верстку:x: ')
