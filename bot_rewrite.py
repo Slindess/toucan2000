@@ -472,10 +472,8 @@ async def профиль(ctx):
     his_roles = ctx.author.roles
     roles= his_roles
     a=0
-    for role in ctx.author.roles:
-        roles[a]=(f'{role.id}')
-        a=a+1
-    print(roles)
+    roles = [role.id for role in ctx.author.roles]
+    
     emb.add_field(name ='Медали' , value = ':medal:')
     if '718940559963848744' in roles:
         emb.add_field(name = 'Медаль', value = 'За Верстку:white_check_mark: ')
