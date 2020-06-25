@@ -515,6 +515,8 @@ async def профиль(ctx):
 
     elif 718940553106161726 in roles:
         emb.set_image(url ='https://cdn.discordapp.com/attachments/713748958916247592/725355053443055639/image0.png')
+    elif 722218157603029022 in roles:
+        emb.set_image(url ='https://cdn.discordapp.com/attachments/701789648841736283/725800934113804398/image0.png')
     else:
          emb.set_image(url ='https://cdn.discordapp.com/attachments/713748958916247592/725358977600323675/image0.png')
     await ctx.send(embed = emb)##
