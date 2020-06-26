@@ -520,7 +520,59 @@ async def профиль(ctx):
     else:
          emb.set_image(url ='https://cdn.discordapp.com/attachments/713748958916247592/725358977600323675/image0.png')
     await ctx.send(embed = emb)##
-        
+@bot.command()
+@commands.has_role('Business woman')
+async def рулетка(ctx):
+    info = ctx.message.content
+    msg = info.split(" ")
+    variants = [['черное', 'четное'], ['черное','нечетное'],["красное", "четное"],["красное", "нечетное"]]
+    random.shuffle(variants)
+    ochko = variants[0]
+    color = variants[0][0]
+    chetki = variants[0][1]
+    vibor_color = msg[1]
+    vibor_chetki= msg[2]
+    stavka = msg[3]
+    print(color+' '+ chetki)
+    users = (requests.get('https://api.npoint.io/f48dd72c49b6cc84d2f4')).json()
+    user_index = -1
+    name= ctx.message.author
+    stavka = int(stavka)
+    if stavka < 10:
+        await ctx.send(':x::x::x: Нельзя ставить меньше 10')
+        return
+    for i in range (len(users)):
+        if users[i]['username'] == str(name):
+            user_index=i
+            break
+    if user_index == -1:
+        await ctx.send('Вы не зарегистрированы в базе данных, для регистрации пропишите /баланс')
+    user = users[user_index]
+    if user['money'] < stavka:
+            await ctx.send(':x::x::x: Недостаточно средств')
+            return
+    user['money']= user['money'] - stavka
+    if vibor_color == color and vibor_chetki == chetki:
+        print(stavka)
+        koef = 1.5
+        viigrish = int(stavka * koef)
+        print(viigrish)
+        user['money'] = user['money'] + viigrish
+        emb = discord.Embed(title = 'Ваш выигрыш:', description = str(viigrish)+'\n\n:green_square::white_large_square::green_square:\n '+
+                            ':white_large_square::green_square::white_large_square:\n\n Выпало '+ color+' '+chetki+'\n\n'+
+                            ':white_large_square::green_square::white_large_square:\n:green_square::white_large_square::green_square:', colour = 0x00FF1F)
+        emb.set_footer(text = 'Команда доступна только Bussines woman')
+    else:
+         viigrish = 0
+         await ctx.send("Вы проиграли")
+
+         emb = discord.Embed(title = 'Ваш проигрыш:', description = str(stavka)+'\n\n:red_square::white_large_square::red_square:\n '+
+                            ':white_large_square::red_square::white_large_square:\n\n Выпало '+ color+' '+chetki+'\n\n'+
+                            ':white_large_square::red_square::white_large_square:\n:red_square::white_large_square::red_square:', colour = 0xFF0000)
+         emb.set_footer(text = 'Команда доступна только Bussines woman')
+    await ctx.send(embed = emb)
+    data = json.dumps(users)
+    requests.post('https://api.npoint.io/f48dd72c49b6cc84d2f4', data=data)
     
     
 bot.run(token)
