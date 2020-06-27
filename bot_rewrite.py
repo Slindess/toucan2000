@@ -282,41 +282,44 @@ async def on_raw_reaction_remove(payload):
         await this_member.remove_roles(this_role)
 @commands.has_permissions(manage_roles=True)
 @bot.command()
-async def мут(ctx, member: discord.Member):
-    info=ctx.message.content
-    info= info.split(' ')
-    prison=info[1]
-    mention=info[1]
-    prison=prison[2:]
-    prison_id=prison[:-1]
-    print(prison_id)
-    time=info[2]
+async def мут(ctx, this_member: discord.Member, time,how , reason):
+    
+##    info=ctx.message.content
+##    info= info.split(' ')
+##    print(info[1])
+##    prison=info[1]
+##    mention=info[1]
+##    prison=prison[2:]
+##    prison_id=prison[:-1]
+##    print(prison_id)
+    #time=info[2]
     this_guild = ctx.message.author.guild
     print(this_guild)
-    user=bot.get_user(prison_id)
-    member=float(prison_id)
-    print(member)
-    this_member = get(this_guild.members, id=int(prison_id))
-    print(this_member)
+    #user=bot.get_user()
+    #member=float(prison_id)
+    #print(member)
+    #this_member = get(this_guild.members, id=int(prison_id))
+    
     his_roles= this_member.roles
+    
     a=0
     for role in this_member.roles:
         his_roles[a]=(f'{role.name}')
         a=a+1
-    print(his_roles)
+    
     for i in range(1,len(his_roles)):
         this_role = get(this_guild.roles, name=his_roles[i])
         await this_member.remove_roles(this_role)
     mute_role = get(this_guild.roles, id=int(720565692981837965))
     await this_member.add_roles(mute_role)
-    reason = info[4:]
-    reason = ' '.join(reason)
+    #reason = info[4:]
+    #reason = ' '.join(reason)
     await ctx.send(
-        mention + ' успешно отправлен в мут :no_entry_sign::no_entry_sign::no_entry_sign: \nПричина: ' + reason)
-    time=info[2]
-    print(time)
-    how=info[3]
-    print(how)
+        this_member.mention + ' успешно отправлен в мут :no_entry_sign::no_entry_sign::no_entry_sign: \nПричина: ' + reason)
+    #time=info[2]
+    
+    #how=info[3]
+    
     if how=='h':
         mute_time= int(time)*3600
         await asyncio.sleep(mute_time)
@@ -326,13 +329,11 @@ async def мут(ctx, member: discord.Member):
     elif how=='s':
         mute_time= int(time)
         await asyncio.sleep(mute_time)
-    await ctx.send(mention+' снова может писать')
+    await ctx.send(this_member.mention+' снова может писать')
     for i in range(1, len(his_roles)):
         this_role = get(this_guild.roles, name=his_roles[i])
         await this_member.add_roles(this_role)
         await this_member.remove_roles(mute_role)
-    reason = info[4:]
-    reason = ' '.join(reason)
 @bot.command()
 async def баланс(ctx):
     name= ctx.message.author
