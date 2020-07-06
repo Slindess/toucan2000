@@ -12,7 +12,8 @@ import os
 import json
 import requests
 import random
-
+from io import StringIO
+import sys
 bot = commands.Bot(command_prefix='/')
 bot.remove_command('help')
 global role_price
