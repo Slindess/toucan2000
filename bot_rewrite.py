@@ -577,7 +577,7 @@ async def рулетка(ctx):
     requests.post('https://api.npoint.io/f48dd72c49b6cc84d2f4', data=data)
 @bot.command()
 async def codehelp(ctx, question):
- 
+    await ctx.send("Эта функция временно приостановлена")
     print(question)
     #awa =help(question) 
     #print(awa)
@@ -586,17 +586,20 @@ async def codehelp(ctx, question):
      def __enter__(self):
         self._stdout = sys.stdout
         sys.stdout = self._stringio = StringIO()
+        await ctx.send("1")
         return self
 
      def __exit__(self, *args):
         self.extend(self._stringio.getvalue().splitlines())
         del self._stringio
         sys.stdout = self._stdout
-
+        await ctx.send("2")
 
     with OutputInterceptor() as output:
     # Любой вывод в консоль из этого блока будет сохраняться в переменную output
+        await ctx.send("3")
         help(question)
+        await ctx.send("1")
     try:
         a='Описание:\n'+output[0]+'\nСинтаксис:\n'+output[2]+'\nПолное:\n'+str(output)
         emb=discord.Embed(title='Code Help beta')
