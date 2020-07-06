@@ -41,7 +41,7 @@ async def help(ctx):
     emb= discord.Embed(title='Доступные команды:',description="Возможно получить полную справку о команде , написав знак Q, например: !переводчикQ",colour = 0xe67e22)#0x12FF11)
     emb.set_thumbnail( url= "https://cdn.discordapp.com/attachments/715633213212721192/718150133329428540/image0.jpg")
     emb.add_field(name='Полезные команды'.format(), value='/время - сколько сейчас время\n'+
-                  '/дата - какая сегодня дата\n/codehelp <элемент_питона> - помогает в питоне',
+                  '/дата - какая сегодня дата\n/codehelp <элемент_питона> - помогает в питоне, пока префикс для нее - !(работает не всегда)',
      inline=False)
     emb.add_field(name ='Развлекательные', value="/гугл @Имя что_гуглим\n/переводчик язык язык фраза",
         inline=False)
