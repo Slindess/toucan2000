@@ -42,7 +42,7 @@ async def help(ctx):
     emb= discord.Embed(title='Доступные команды:',description="Возможно получить полную справку о команде , написав знак Q, например: !переводчикQ",colour = 0xe67e22)#0x12FF11)
     emb.set_thumbnail( url= "https://cdn.discordapp.com/attachments/715633213212721192/718150133329428540/image0.jpg")
     emb.add_field(name='Полезные команды'.format(), value='/время - сколько сейчас время\n'+
-                  '/дата - какая сегодня дата',
+                  '/дата - какая сегодня дата\n/codehelp <элемент_питона> - помогает в питоне',
      inline=False)
     emb.add_field(name ='Развлекательные', value="/гугл @Имя что_гуглим\n/переводчик язык язык фраза",
         inline=False)
@@ -574,6 +574,44 @@ async def рулетка(ctx):
     await ctx.send(embed = emb)
     data = json.dumps(users)
     requests.post('https://api.npoint.io/f48dd72c49b6cc84d2f4', data=data)
-    
+@bot.command()
+async def codehelp(ctx, question):
+ 
+    print(question)
+    #awa =help(question) 
+    #print(awa)
+    #await ctx.send(help(f'{question}'))
+    class OutputInterceptor(list):
+     def __enter__(self):
+        self._stdout = sys.stdout
+        sys.stdout = self._stringio = StringIO()
+        return self
+
+     def __exit__(self, *args):
+        self.extend(self._stringio.getvalue().splitlines())
+        del self._stringio
+        sys.stdout = self._stdout
+
+
+    with OutputInterceptor() as output:
+    # Любой вывод в консоль из этого блока будет сохраняться в переменную output
+        help(question)
+    try:
+        a='Описание:\n'+output[0]+'\nСинтаксис:\n'+output[2]+'\nПолное:\n'+str(output)
+        emb=discord.Embed(title='Code Help beta')
+        emb.add_field(name = "Описание", value = output[0])
+        emb.add_field(name = "Синтаксис", value  = output[2])
+        emb.add_field(name="Полное", value = '\n'.join(output))
+        await ctx.send(embed = emb)
+        pit = question[:1000]
+
+        print(pit)
+    except:
+        emb=discord.Embed(title='Code Help beta')
+        emb.add_field(name = "Описание", value = output[0])
+        emb.add_field(name = "Синтаксис", value  = output[2])
+        h = '\n'.join(output)
+        emb.add_field(name="Полное", value = h[:1000])
+        await ctx.send(embed = emb)
     
 bot.run(token)
