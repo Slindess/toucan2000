@@ -19,6 +19,10 @@ global role_price
 role_price={'714223774584799283' : 10000, '713326514376278106' : 2000, '719923309780664362' : 50000 , '720327708143255564': 5000,
            '722218339652337744' : 30000, '722217773954236427': 40000, '722218157603029022' : 150000, '722217974001303665':75000,
            '722218370476539986': 10000}
+@bot.event
+async def on_ready():
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="за Сервером Dark Gibbons:\n"+
+                                                        "https://discord.gg/MQhjeHG"))
 @bot.command(pass_context=True)
 async def гугл(ctx):
     try:
