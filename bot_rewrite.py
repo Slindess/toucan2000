@@ -577,6 +577,40 @@ async def рулетка(ctx):
     await ctx.send(embed = emb)
     data = json.dumps(users)
     requests.post('https://api.npoint.io/f48dd72c49b6cc84d2f4', data=data)
-
+@bot.command()
+async def sex(ctx):
+    member = ctx.author
+    print(member)
+    con= sqlite3.connect('my_base2.db')
+    cursor = con.cursor()
+    cursor.execute(f"""SELECT name FROM users WHERE name = '{member}'""")
+    if cursor.execute(f"""SELECT name FROM users WHERE name = '{member}'""").fetchone() is None:
+        await ctx.send('Вы не зарегистрированы\nРегистрация:')
+        await ctx.send('напишите команду !register Имя Фамилию Пол')
+        for value in cursor.execute("""SELECT * FROM users"""):
+            print(value)
+    else:
+        await ctx.send(cursor.execute(f"""SELECT sex FROM users WHERE name = '{member}'""").fetchone())
+    
+        
+    #else:
+        #await ctx.send(cursor.execute(f"""SELECT sex FROM users WHERE name = '{member}'""").fetchone())
+@bot.command()
+async def register(ctx, name, surname, sex):
+    con= sqlite3.connect('/Users/mikhailslinyakov/Desktop/Metel/my_base2.db')
+    cursor = con.cursor()
+    cursor.execute(f"""INSERT INTO users VALUES('{ctx.author}','{surname}','{sex}')""")
+    con.commit()
+    await ctx.send("Зарегистрировано")
+@bot.command()
+async def delete_pf(ctx):
+    con= sqlite3.connect('/Users/mikhailslinyakov/Desktop/Metel/my_base2.db')
+    cursor = con.cursor()
+    for value in cursor.execute("""SELECT * FROM users"""):
+            print(value)
+    cursor.execute(f"DELETE FROM users WHERE name = '{ctx.author}'")
+    con.commit()
+    for value in cursor.execute("""SELECT * FROM users"""):
+            print(value)
     
 bot.run(token)
