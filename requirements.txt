@@ -2,3 +2,4 @@ discord.py
 asyncio
 datetime
 requests
+my_base2.db
