@@ -579,6 +579,7 @@ async def рулетка(ctx):
     requests.post('https://api.npoint.io/f48dd72c49b6cc84d2f4', data=data)
 @bot.command()
 async def sex(ctx):
+    await ctx.send("Зашли")
     member = ctx.author
     print(member)
     con= sqlite3.connect('my_base2.db')
