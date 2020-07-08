@@ -582,7 +582,7 @@ async def sex(ctx):
     await ctx.send("Зашли")
     member = ctx.author
     print(member)
-    con= sqlite3.connect('heroku/my_base2.db')
+    con= sqlite3.connect('my_base2.db')
     cursor = con.cursor()
     cursor.execute(f"""SELECT name FROM users WHERE name = '{member}'""")
     if cursor.execute(f"""SELECT name FROM users WHERE name = '{member}'""").fetchone() is None:
