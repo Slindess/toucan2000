@@ -12,6 +12,7 @@ import os
 import json
 import requests
 import random
+import sqlite3
 bot = commands.Bot(command_prefix='/')
 bot.remove_command('help')
 global role_price
@@ -582,7 +583,7 @@ async def sex(ctx):
     await ctx.send("Зашли")
     member = ctx.author
     print(member)
-    con= sqlite3.connect('my_base2')
+    con= sqlite3.connect('my_base2.db')
     cursor = con.cursor()
     cursor.execute(f"""SELECT name FROM users WHERE name = '{member}'""")
     if cursor.execute(f"""SELECT name FROM users WHERE name = '{member}'""").fetchone() is None:
@@ -598,14 +599,14 @@ async def sex(ctx):
         #await ctx.send(cursor.execute(f"""SELECT sex FROM users WHERE name = '{member}'""").fetchone())
 @bot.command()
 async def register(ctx, name, surname, sex):
-    con= sqlite3.connect('/Users/mikhailslinyakov/Desktop/Metel/my_base2.db')
+    con= sqlite3.connect('my_base2.db')
     cursor = con.cursor()
     cursor.execute(f"""INSERT INTO users VALUES('{ctx.author}','{surname}','{sex}')""")
     con.commit()
     await ctx.send("Зарегистрировано")
 @bot.command()
 async def delete_pf(ctx):
-    con= sqlite3.connect('/Users/mikhailslinyakov/Desktop/Metel/my_base2.db')
+    con= sqlite3.connect('my_base2.db')
     cursor = con.cursor()
     for value in cursor.execute("""SELECT * FROM users"""):
             print(value)
