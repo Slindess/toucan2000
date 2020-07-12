@@ -50,7 +50,7 @@ async def help(ctx):
     emb.add_field(name ='Развлекательные', value="/гугл @Имя что_гуглим\n/переводчик язык язык фраза",
         inline=False)
     emb.add_field(name = 'Серверные', value="/баланс - Ваш баланс\n/ставка Х - поставить ставку в канале казино, вместо Х - сама ставка"+
-                 '\n/профиль - Ваш профиль')
+                 '\n/профиль - Ваш профиль\n/sub - Подписаться на новости сервера')
     emb.add_field(name='Для Владельца Жигули', value = "/небухти @Имя\n/незаводись @Имя\n/сплошняк @Имя - не переходи границы")
     await ctx.send(embed=emb)
 ################################################################
@@ -577,5 +577,11 @@ async def рулетка(ctx):
     await ctx.send(embed = emb)
     data = json.dumps(users)
     requests.post('https://api.npoint.io/f48dd72c49b6cc84d2f4', data=data)
-
+@bot.command(aliases = ['подписаться','подписка','новости'])
+async def sub(ctx):
+    member = ctx.message.author
+    guild = member.guild
+    role = discord.utils.get(guild.roles, id = 731253515703287898)
+    await member.add_roles(role)
+    await ctx.message.add_reaction('✅')
 bot.run(token)
