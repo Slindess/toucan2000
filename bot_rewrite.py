@@ -293,7 +293,7 @@ async def мут(ctx, this_member: discord.Member, time,how , reason):
         a=a+1
     if 'мут' in his_roles:
            await ctx.send("недостаточно прав")
-
+           return
 ##    info=ctx.message.content
 ##    info= info.split(' ')
 ##    print(info[1])
