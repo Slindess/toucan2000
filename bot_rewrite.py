@@ -286,13 +286,8 @@ async def on_raw_reaction_remove(payload):
 @commands.has_permissions(manage_roles=True)
 @bot.command()
 async def мут(ctx, this_member: discord.Member, time,how , reason):
-    his_roles= this_member.roles
-    a=0
-    for role in this_member.roles:
-        his_roles[a]=(f'{role.name}')
-        a=a+1
-    if 'мут' in his_roles:
-           await ctx.send("недостаточно прав")
+    if ctx.author == 'dmemsm#3179':
+           await ctx.send("иди нафиг, dmemsm")
            return
 ##    info=ctx.message.content
 ##    info= info.split(' ')
