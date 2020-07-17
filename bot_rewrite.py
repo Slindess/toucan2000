@@ -286,7 +286,7 @@ async def on_raw_reaction_remove(payload):
 @commands.has_permissions(manage_roles=True)
 @bot.command()
 async def мут(ctx, this_member: discord.Member, time,how , reason):
-    if ctx.author == 'dmemsm#3179':
+    if ctx.author.id == 453179077294161920:
            await ctx.send("иди нафиг, dmemsm")
            return
 ##    info=ctx.message.content
