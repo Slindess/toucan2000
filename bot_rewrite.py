@@ -426,9 +426,9 @@ async def ставка(ctx):
     this_guild = ctx.message.author.guild
     
     this_channel = discord.utils.get(this_guild.channels, id = 724722525371629598)
-    if ctx.channel !=this_channel:
-        await ctx.send('Эту команду можно использовать только в канале казино')
-        return
+    #if ctx.channel !=this_channel:
+        #await ctx.send('Эту команду можно использовать только в канале казино')
+        #return
     info = ctx.message.content
     msg = info.split(' ')
     stavka = msg[1]
