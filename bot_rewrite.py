@@ -393,7 +393,7 @@ async def купить(ctx):
     else:
         await ctx.send(":x::x::x:Вы не достойны такой роскоши, так как у Вас недостаточно средств:x::x::x:")
 @bot.command()
-@commands.has_role('Владелец Жигули')
+#@commands.has_role('Владелец Жигули')
 async def небухти(ctx):
         info = ctx.message.content
         msg = info.split(' ')
@@ -402,7 +402,7 @@ async def небухти(ctx):
         emb.set_footer(text = 'Команда доступна только для Владельца Жигули')
         await ctx.send(embed = emb)
 @bot.command()
-@commands.has_role('Владелец Жигули')
+#@commands.has_role('Владелец Жигули')
 async def незаводись(ctx):
         info = ctx.message.content
         msg = info.split(' ')
@@ -412,7 +412,7 @@ async def незаводись(ctx):
         emb.set_footer(text = 'Команда доступна только для Владельца Жигули')
         await ctx.send(embed = emb)
 @bot.command()
-@commands.has_role('Владелец Жигули')
+#@commands.has_role('Владелец Жигули')
 async def сплошняк(ctx):
         info = ctx.message.content
         msg = info.split(' ')
